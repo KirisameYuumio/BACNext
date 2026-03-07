@@ -103,6 +103,9 @@
       "name": "拉新"
     },
     {
+      "name": "社区(小站)"
+    },
+    {
       "name": "Wbi"
     },
     {
@@ -79104,6 +79107,108 @@
               }
             },
             "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/x/community/cosmo/interface/toggle_tribee_membership": {
+      "post": {
+        "summary": "切换小站加入状态",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "社区(小站)"
+        ],
+        "parameters": [
+          {
+            "name": "csrf",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "d314b0d697a5c4044ef96e5b511240bf",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tribee_id": {
+                    "type": "integer"
+                  },
+                  "action": {
+                    "type": "integer",
+                    "description": "1加入2退出，1暂时不可用"
+                  }
+                },
+                "required": [
+                  "tribee_id",
+                  "action"
+                ]
+              },
+              "example": {
+                "tribee_id": 4,
+                "action": 2
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "ttl": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "member_info": {
+                          "type": "object",
+                          "properties": {
+                            "uid": {
+                              "type": "integer"
+                            },
+                            "tribee_id": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "uid",
+                            "tribee_id"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "member_info"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message",
+                    "ttl",
+                    "data"
+                  ]
+                }
+              }
+            }
           }
         },
         "security": []
